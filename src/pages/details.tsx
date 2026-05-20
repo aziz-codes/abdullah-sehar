@@ -1,7 +1,17 @@
 
 const Details = () => {
+    const calculateDaysLeft = () => {
+        const weddingDate = new Date("2026-05-31T00:00:00");
+        const today = new Date();
+        const diffTime = weddingDate.getTime() - today.getTime();
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        return diffDays > 0 ? diffDays : 0;
+    };
+
+    const daysLeft = calculateDaysLeft();
+
     return (
-        <div className="flex justify-center items-center  flex-col">
+        <div className="flex justify-center items-center  flex-col relative">
 
             <div className="relative">
                 <img className="w-md h-auto" src="/envelope-open.png" alt="" />
@@ -12,11 +22,17 @@ const Details = () => {
                         <img src="/flower-frame.png" className="w-full object-cover -rotate-180 h-6" />
                         <div className="flex items-center relative">
                             <img src="nikaah.png" className="w-xs h-auto border-8 border-white z-50" />
-                            <div className="">
-                                <img src="/single-flower.png" className="w-16 object-contain z-40 -right-10 rotate-20 h-auto absolute top-0" />
-                                <img src="/weeding-photos.png" className="w-xs h-auto absolute top-0" />
-                                <div className="absolute left-2 top-6 bg-red-500 h-auto  w-80">
-                                    <img src="/button-frame.png" className="h-full w-full object-cover" />
+                            <div className="relative ">
+                                <div className="absolute -top-40 left-0 w-xs flex flex-col items-end">
+                                    <img src="/single-flower.png" className="w-16 object-contain z-40 -right-10 rotate-20 h-auto absolute top-0" />
+                                    <img src="/weeding-photos.png" className="w-full h-auto" />
+                                    <div className="relative h-24 w-full flex justify-center mt-4">
+                                        <img src="/button-frame.png" className="h-full w-full object-contain" />
+                                        <div className="absolute inset-0 flex flex-col items-center justify-center">
+                                            <span className="text-white text-4xl font-serif leading-none">{daysLeft}</span>
+                                            <span className="text-white text-sm font-aston leading-tight mt-1">Days to go!</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
