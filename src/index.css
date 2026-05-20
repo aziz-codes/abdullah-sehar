@@ -1,1 +1,20 @@
 @import "tailwindcss";
+
+@theme {
+  --font-aston: "Aston Script", cursive;
+  --color-primary: #4a592c;
+  --color-secondary: #bf8110;
+}
+
+body {
+  background-image: url("./assets/bg-frame.png");
+  background-size: cover;
+  background-position: center;
+}
+
+@font-face {
+  font-family: "Aston Script";
+  src: url("./assets/fonts/aston-script.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
