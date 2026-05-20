@@ -11,13 +11,12 @@ const Details = () => {
     const daysLeft = calculateDaysLeft();
 
     return (
-        <div className="flex justify-center items-center  flex-col relative">
-
-            <div className="relative">
-                <img className="w-md h-auto" src="/envelope-open.png" alt="" />
+        <div className="flex flex-col items-center relative min-h-screen w-full overflow-y-auto">
+            <div className="relative w-md my-auto py-12">
+                <img className="w-full h-auto" src="/envelope-open.png" alt="" />
                 <img className="absolute top-72 -left-14 h-auto w-30 z-10" src='/flowers-main.png' />
-                <div className="relative flex items-start gap-0 ">
-                    <div className="flex flex-col relative -top-12   -left-12">
+                <div className="relative flex items-start gap-0 w-max">
+                    <div className="flex flex-col relative -top-12 -left-12">
                         <img src="/sehar.png" className="h-auto w-68 z-20 " />
                         <img src="/flower-frame.png" className="w-full object-cover -rotate-180 h-6" />
                         <div className="flex items-center relative">
@@ -44,7 +43,7 @@ const Details = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default Details
+export default Details;
