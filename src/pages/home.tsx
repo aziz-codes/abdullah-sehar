@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence, type Transition } from "framer-motion";
+import DevContact from "@/components/dev";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -15,6 +16,7 @@ const Main: React.FC = () => {
 
     return (
         <div className="h-full w-full overflow-hidden">
+            <DevContact />
             <AnimatePresence onExitComplete={() => navigate("/details")}>
                 {!isExiting && (
                     <motion.div
