@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 
 const Details = () => {
     const calculateDaysLeft = () => {
@@ -22,8 +23,12 @@ const Details = () => {
                         <div className="flex items-center relative">
                             <img src="nikaah.png" className="w-xs h-auto border-8 border-white z-50" />
                             <div className="relative ">
-                                <div className="absolute -top-40 left-0 w-xs flex flex-col items-end">
-                                    <img src="/single-flower.png" className="w-16 object-contain z-40 -right-10 rotate-20 h-auto absolute top-0" />
+                                <div className="absolute -top-50 left-0 w-xs flex flex-col items-end">
+                                    <div className="flex flex-col gap-6 w-full py-10 relative  border-r-16 border-primary">
+                                        <h4 className="font-aston text-start text-secondary">Click here for details</h4>
+                                        <NavLink to="#" className="text-primary text-3xl font-bold leading-tight text-center underline"> DETAILS</NavLink>
+                                    </div>
+                                    <img src="/single-flower.png" className="w-16 object-contain z-40 rotate-20  -left-6 h-auto absolute top-15" />
                                     <img src="/weeding-photos.png" className="w-full h-auto" />
                                     <div className="relative h-24 w-full flex justify-center mt-4">
                                         <img src="/button-frame.png" className="h-full w-full object-contain" />
@@ -32,6 +37,7 @@ const Details = () => {
                                             <span className="text-white text-sm font-aston leading-tight mt-1">Days to go!</span>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
