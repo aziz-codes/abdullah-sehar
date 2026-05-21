@@ -26,7 +26,7 @@ const Details = () => {
                                 <div className="absolute -top-50 left-0 w-xs flex flex-col items-end">
                                     <div className="flex flex-col gap-6 w-full py-10 relative  border-r-16 border-primary">
                                         <h4 className="font-aston text-start text-secondary">Click here for details</h4>
-                                        <NavLink to="#" className="text-primary text-3xl font-bold leading-tight text-center underline"> DETAILS</NavLink>
+                                        <NavLink to="/nikkah" className="text-primary text-3xl font-bold leading-tight text-center underline"> DETAILS</NavLink>
                                     </div>
                                     <img src="/single-flower.png" className="w-16 object-contain z-40 rotate-20  -left-6 h-auto absolute top-15" />
                                     <img src="/weeding-photos.png" className="w-full h-auto" />
