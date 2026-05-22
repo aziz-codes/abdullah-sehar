@@ -78,8 +78,8 @@ const Details: React.FC = () => {
     const daysLeft = calculateDaysLeft();
 
     return (
-        <div className="flex flex-col items-center relative min-h-screen w-full overflow-y-auto">
-            <div className="relative w-md my-auto py-12">
+        <div className="flex flex-col items-center relative w-full overflow-x-hidden overflow-y-auto">
+            <div className="details-wrapper relative w-md my-auto py-12">
 
                 {/* Envelope — drops in from above */}
                 <motion.img

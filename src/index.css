@@ -18,3 +18,189 @@ body {
   font-weight: normal;
   font-style: normal;
 }
+
+/* ── Responsive scaling for the invitation layout ── */
+.details-wrapper {
+  transform-origin: top center;
+}
+
+/* Small phones (≤ 374px, e.g. iPhone SE, Galaxy S8) */
+@media (max-width: 374px) {
+  .details-wrapper {
+    transform: scale(0.58);
+    margin-bottom: -42%;
+  }
+}
+
+/* Standard phones (375px – 413px, e.g. iPhone 12/13/14) */
+@media (min-width: 375px) and (max-width: 413px) {
+  .details-wrapper {
+    transform: scale(0.65);
+    margin-bottom: -35%;
+  }
+}
+
+/* Larger phones (414px – 479px, e.g. iPhone Plus/Max, Pixel) */
+@media (min-width: 414px) and (max-width: 479px) {
+  .details-wrapper {
+    transform: scale(0.72);
+    margin-bottom: -28%;
+  }
+}
+
+/* Small tablets / large phones (480px – 639px) */
+@media (min-width: 480px) and (max-width: 639px) {
+  .details-wrapper {
+    transform: scale(0.82);
+    margin-bottom: -18%;
+  }
+}
+
+/* Medium tablets (640px – 767px) */
+@media (min-width: 640px) and (max-width: 767px) {
+  .details-wrapper {
+    transform: scale(0.9);
+    margin-bottom: -10%;
+  }
+}
+
+/* ── DevContact floating button & card ── */
+.dev-contact {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.6rem;
+}
+
+/* Trigger button */
+.dev-trigger {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #fdf6ea, #f5e6c8);
+  box-shadow:
+    0 2px 12px rgba(180, 130, 80, 0.22),
+    0 0 0 1px rgba(196, 164, 124, 0.3);
+}
+
+.dev-trigger-icon {
+  color: #a07844;
+  position: relative;
+  z-index: 2;
+}
+
+/* Pulsing ring */
+.dev-trigger-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(191, 129, 16, 0.35);
+  animation: dev-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes dev-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 0;
+  }
+}
+
+/* Card */
+.dev-card {
+  background: linear-gradient(145deg, #fffdf7, #faf1de);
+  border: 1px solid rgba(196, 164, 124, 0.3);
+  border-radius: 14px;
+  padding: 1rem 1.15rem;
+  box-shadow:
+    0 8px 30px rgba(160, 120, 60, 0.14),
+    0 1px 3px rgba(160, 120, 60, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 220px;
+  max-width: 260px;
+}
+
+.dev-card-tagline {
+  font-family: "Georgia", serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #7a4f2d;
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+
+.dev-card-sub {
+  font-family: "Georgia", serif;
+  font-size: 11.5px;
+  color: #a3845e;
+  line-height: 1.45;
+  margin: 0 0 0.25rem 0;
+}
+
+.dev-card-email {
+  font-family: monospace;
+  font-size: 11px;
+  color: #8c6a42;
+  background: rgba(191, 129, 16, 0.08);
+  padding: 4px 8px;
+  border-radius: 6px;
+  text-decoration: none;
+  word-break: break-all;
+  transition: background 0.2s ease;
+}
+
+.dev-card-email:hover {
+  background: rgba(191, 129, 16, 0.15);
+}
+
+.dev-card-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.35rem;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #a07844, #bf8110);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  box-shadow: 0 2px 8px rgba(160, 100, 30, 0.25);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.dev-card-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(160, 100, 30, 0.35);
+}
+
+@media (max-width: 374px) {
+  .dev-contact {
+    bottom: 0.75rem;
+    right: 0.75rem;
+  }
+  .dev-trigger {
+    width: 36px;
+    height: 36px;
+  }
+  .dev-card {
+    min-width: 190px;
+    max-width: 230px;
+  }
+}

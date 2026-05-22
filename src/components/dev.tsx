@@ -1,91 +1,79 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, type Transition } from "framer-motion";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+const EMAIL = "aziz.codes42@gmail.com";
 
 const DevContact: React.FC = () => {
-    const [hovered, setHovered] = useState(false);
+    const [open, setOpen] = useState(false);
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    // Close on outside click
+    useEffect(() => {
+        if (!open) return;
+        const handleClick = (e: MouseEvent) => {
+            if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+                setOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClick);
+        return () => document.removeEventListener("mousedown", handleClick);
+    }, [open]);
 
     return (
-        <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-2">
-
-            {/* Tooltip */}
+        <div className="dev-contact" ref={containerRef}>
+            {/* Expanded card */}
             <AnimatePresence>
-                {hovered && (
+                {open && (
                     <motion.div
-                        key="tooltip"
-                        initial={{ opacity: 0, y: 8, scale: 0.92 }}
+                        key="card"
+                        className="dev-card"
+                        initial={{ opacity: 0, y: 12, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 6, scale: 0.92 }}
-                        transition={{ duration: 0.25, ease: EASE } as Transition}
-                        style={{
-                            background: "linear-gradient(135deg, #fffdf9, #fdf5e8)",
-                            border: "1px solid rgba(196,164,124,0.35)",
-                            borderRadius: "10px",
-                            padding: "8px 14px",
-                            boxShadow: "0 4px 20px rgba(180,130,80,0.15)",
-                            whiteSpace: "nowrap",
-                        }}
+                        exit={{ opacity: 0, y: 8, scale: 0.92 }}
+                        transition={{ duration: 0.3, ease: EASE } as Transition}
                     >
-                        <p style={{
-                            fontFamily: "serif",
-                            fontSize: "11px",
-                            color: "#8c6240",
-                            letterSpacing: "0.04em",
-                            marginBottom: "1px",
-                        }}>
-                            ✨ Want one just like this?
+                        <p className="dev-card-tagline">
+                            ✨ Loved this invitation?
                         </p>
+                        <p className="dev-card-sub">
+                            Get a custom one crafted for your special day
+                        </p>
+                        <a href={`mailto:${EMAIL}`} className="dev-card-email">
+                            {EMAIL}
+                        </a>
                         <a
-                            href="mailto:developer@email.com"
-                            style={{
-                                fontFamily: "'Georgia', serif",
-                                fontSize: "12px",
-                                fontWeight: 600,
-                                color: "#7a4f2d",
-                                textDecoration: "none",
-                                letterSpacing: "0.02em",
-                            }}
+                            href={`mailto:${EMAIL}?subject=Custom%20Wedding%20Invitation&body=Hi!%20I'd%20love%20to%20get%20a%20custom%20wedding%20invitation%20designed.`}
+                            className="dev-card-cta font-aston"
                         >
-                            Let's make it happen →
+                            Let's create yours →
                         </a>
                     </motion.div>
                 )}
             </AnimatePresence>
 
-            {/* Mail button */}
-            <motion.a
-                href="mailto:developer@email.com"
-                onHoverStart={() => setHovered(true)}
-                onHoverEnd={() => setHovered(false)}
-                whileHover={{ scale: 1.15 }}
-                whileTap={{ scale: 0.92 }}
+            {/* Floating trigger button */}
+            <motion.button
+                className="dev-trigger"
+                onClick={() => setOpen((v) => !v)}
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.94 }}
                 transition={{ duration: 0.2, ease: EASE } as Transition}
-                style={{
-                    width: "36px",
-                    height: "36px",
-                    borderRadius: "50%",
-                    background: "linear-gradient(135deg, #fffdf9, #fdf5e8)",
-                    border: "1px solid rgba(196,164,124,0.4)",
-                    boxShadow: "0 2px 12px rgba(180,130,80,0.18)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    cursor: "pointer",
-                    textDecoration: "none",
-                }}
+                aria-label="Contact developer"
             >
+                <span className="dev-trigger-ring" />
                 <svg
-                    width="15"
-                    height="11"
-                    viewBox="0 0 15 11"
+                    width="16"
+                    height="12"
+                    viewBox="0 0 16 12"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
+                    className="dev-trigger-icon"
                 >
-                    <rect x="0.5" y="0.5" width="14" height="10" rx="1.5" stroke="#b8936a" strokeWidth="1" />
-                    <path d="M1 1L7.5 6.5L14 1" stroke="#b8936a" strokeWidth="1" strokeLinecap="round" />
+                    <rect x="0.75" y="0.75" width="14.5" height="10.5" rx="2" stroke="currentColor" strokeWidth="1.2" />
+                    <path d="M1.5 1.5L8 7L14.5 1.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-            </motion.a>
+            </motion.button>
         </div>
     );
 };
